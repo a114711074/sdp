@@ -23,8 +23,8 @@ func (s *StreamInfo) Clone() *StreamInfo {
 		tracks: make([]*TrackInfo, 0),
 	}
 
-	for k, v := range s.tracks {
-		stream.tracks[k] = v.Clone()
+	for _, v := range s.tracks {
+		stream.tracks = append(stream.tracks, v.Clone())
 	}
 	return stream
 }
@@ -40,20 +40,20 @@ func (s *StreamInfo) AddTrack(track *TrackInfo) {
 }
 
 func (s *StreamInfo) RemoveTrack(track *TrackInfo) {
-	tracks := make([]*TrackInfo,0)
-	for _,temtrack := range s.tracks {
+	tracks := make([]*TrackInfo, 0)
+	for _, temtrack := range s.tracks {
 		if temtrack.GetID() != track.GetID() {
-			tracks = append(tracks,temtrack)
+			tracks = append(tracks, temtrack)
 		}
 	}
 	s.tracks = tracks
 }
 
 func (s *StreamInfo) RemoveTrackById(trackId string) {
-	tracks := make([]*TrackInfo,0)
-	for _,temtrack := range s.tracks {
+	tracks := make([]*TrackInfo, 0)
+	for _, temtrack := range s.tracks {
 		if temtrack.GetID() != trackId {
-			tracks = append(tracks,temtrack)
+			tracks = append(tracks, temtrack)
 		}
 	}
 	s.tracks = tracks
@@ -77,12 +77,12 @@ func (s *StreamInfo) GetTracks() []*TrackInfo {
 
 func (s *StreamInfo) RemoveAllTracks() {
 
-	s.tracks = make([]*TrackInfo,0)
+	s.tracks = make([]*TrackInfo, 0)
 }
 
 func (s *StreamInfo) GetTrack(trackID string) *TrackInfo {
 
-	for _,track := range s.tracks {
+	for _, track := range s.tracks {
 		if track.GetID() == trackID {
 			return track
 		}
