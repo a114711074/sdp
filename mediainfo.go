@@ -56,6 +56,8 @@ func (m *MediaInfo) Clone() *MediaInfo {
 	if m.simulcast {
 		cloned.SetSimulcast(m.simulcast)
 	}
+	cloned.Protocal = m.Protocal
+	cloned.Payloads = m.Payloads
 	return cloned
 }
 
